@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import {LandingPage_secqure} from "./components/LandingPage_sqre";
+import {Secqure_Webview} from "secqure-react-native-sdk"
+import ClearStorage from "./components/ClearAuthData";
+
+const Stack = createStackNavigator();
 
 export default function App() {
+  
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen name="Home" component={LandingPage_secqure} />
+        <Stack.Screen name="Secqure_Webview" component={Secqure_Webview} />
+        <Stack.Screen name="Logout" component={ClearStorage} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
